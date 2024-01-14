@@ -26,7 +26,7 @@ var quizData=[
     var displayTime=document.querySelector("#time");
     var endScreen=document.getElementById("end-screen");
     var score=document.getElementById("final-score");
-    
+    var submit=document.getElementById("submit");
     
     var currentIndex=0;
     var finalScore=0;
@@ -105,7 +105,16 @@ function endQuiz(){
     // initialTime=finalScore;
     score.textContent=finalScore;
     localStorage.setItem("score", finalScore);
-   
+   scores();
+}
+//This is to store the score in the highscore page where initials and scores are saved
+submit.addEventListener("click",scores);
+
+function scores(){
+  
+var checkScore=localStorage.getItem("score");
+
+highScore.textContent=("score"+checkScore);
 
 
 }
