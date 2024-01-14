@@ -24,7 +24,10 @@ var quizData=[
     var displayQuestion=document.getElementById("question-title");
     var displayChoices=document.querySelector("#choices");
     var displayTime=document.querySelector("#time");
+    var endScreen=document.getElementById("end-screen");
+    var score=document.getElementById("final-score");
     var currentIndex=0;
+    var finalScore=0;
     
     startQuiz.addEventListener("click",showQuestions);
 
@@ -33,7 +36,7 @@ var quizData=[
         displayQuestion.textContent=quizData[currentIndex].question;
         startTimer();
         
-       displayChoices.innerHTML = ""; // Clear previous choices
+      // displayChoices.innerHTML = ""; // Clear previous choices
 
     }
     
@@ -44,10 +47,13 @@ var quizData=[
             displayTime.textContent=initialTime;
             if (initialTime<=0){
                 clearInterval(timeInterval);
+                endQuiz();
             }
             initialTime--;
+            return initialTime;
         }, 1000);
-        
+       
+       
 
     }
 //function that shows the choices in buttons
@@ -61,5 +67,12 @@ var quizData=[
 function checkAnswer(){
 
 
+
+}
+//When the game ends, it should display their score and give the user the ability to save their initials and their score
+function endQuiz(){
+    endScreen.setAttribute("class","show");
+    initialTime=finalScore;
+    score.textContent=finalScore;
 
 }
