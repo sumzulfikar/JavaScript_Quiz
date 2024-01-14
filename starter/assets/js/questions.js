@@ -26,6 +26,7 @@ var quizData=[
     var displayTime=document.querySelector("#time");
     var endScreen=document.getElementById("end-screen");
     var score=document.getElementById("final-score");
+    var highScrore=document.getElementById("highscores")
     var currentIndex=0;
     var finalScore=0;
     
@@ -35,7 +36,7 @@ var quizData=[
         panelQuiz.setAttribute("class","show");
         displayQuestion.textContent=quizData[currentIndex].question;
         startTimer();
-        
+        showChoices();
       // displayChoices.innerHTML = ""; // Clear previous choices
 
     }
@@ -56,9 +57,26 @@ var quizData=[
        
 
     }
-//function that shows the choices in buttons
+//function that shows the choices in buttons inside unordered list
     function showChoices(){
+        var options = quizData[currentIndex].option;
+        var olTag= document.createElement("ol");
+            displayChoices.appendChild(olTag);
+            options.forEach(function (option){
+                var liTag = document.createElement("li");
+                var button = document.createElement("button");
+                button.textContent = option;
+                button.addEventListener("click", function () {
+                checkAnswer(option);
+            });
+            liTag.appendChild(button);
+            olTag.appendChild(liTag);
+        });
+    
+            
+        console.log("showChoices worked?")
 
+        
 
 
     }
@@ -74,5 +92,6 @@ function endQuiz(){
     endScreen.setAttribute("class","show");
     initialTime=finalScore;
     score.textContent=finalScore;
+    localStorage.setItem("score", finalScore);
 
 }
