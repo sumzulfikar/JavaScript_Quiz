@@ -35,20 +35,18 @@ var quizData=[
         
        displayChoices.innerHTML = ""; // Clear previous choices
 
-      // var choices = quizData[currentIndex].choices;
-    //    choices.forEach(function (choices) {
-    //     var button = document.createElement("button");
-    //     button.textContent = choices;
-    //     button.addEventListener("click", checkAnswer);
-    //     displayChoices.appendChild(button);
-//   }   
-//   );  
-        
     }
     
     //function for timer and score
-
+    var initialTime=60;
     function startTimer(){
+        var timeInterval=setInterval(function(){
+            displayTime.textContent=initialTime;
+            if (initialTime<=0){
+                clearInterval(timeInterval);
+            }
+            initialTime--;
+        }, 1000);
         
 
     }
