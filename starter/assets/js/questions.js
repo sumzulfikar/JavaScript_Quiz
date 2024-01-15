@@ -25,6 +25,9 @@ var quizData=[
     var displayChoices=document.querySelector("#choices");
     var displayTime=document.querySelector("#time");
     var endScreen=document.getElementById("end-screen");
+    var submit=document.getElementById("submit");
+    var initialsInput=document.getElementById("initials");
+    var highScore=document.getElementById('highscores');
     var score=document.getElementById("final-score");
     
     
@@ -95,36 +98,27 @@ function checkAnswer(selectedOption){
         console.log("incorrect answer");
     } 
     showQuestions();
-
+    return finalScore;
 
 }
 //When the game ends, it should display their score and give the user the ability to save their initials and their score
 function endQuiz(){
     endScreen.setAttribute("class","show");
     panelQuiz.setAttribute("class","hide");
-    // initialTime=finalScore;
     score.textContent=finalScore;
     localStorage.setItem("score", finalScore);
    scores();
 }
 //This is to store the score in the highscore page where initials and scores are saved
-var submit=document.getElementById("submit");
-var initialsInput=document.getElementById("initials");
+
 submit.addEventListener("click",scores);
-
+var checkScore=localStorage.getItem("score");
 function scores(){ 
-    
-    var initials=initialsInput.value.trim();
+    var initials = initialsInput.value.trim();
     localStorage.setItem('initials', initials);
-    var checkScore=localStorage.getItem("score");
-    
-    var initials = localStorage.getItem('initials');
-    var checkScore = localStorage.getItem('score'); ;
-    var details="<li>"+initials+" "+checkScore+"</li>";
+    var checkScore = localStorage.getItem("score");
+    var details = "<li>" + initials + " " + checkScore + "</li>";
+    highScore.innerHTML = details;
 
-    highScore.textContent=details;
-   
-// 
-// 
 
 }
