@@ -21,7 +21,7 @@ Click this link for accessing the Quiz:
 https://sumzulfikar.github.io/JavaScript_Quiz/
 
 A screenshot of the application:
-![A Quiz showing javascriprt quiz with time](JavaScript_Quiz\starter\assets\images\quiz_app.PNG)
+![A timeed quiz for javascript](./starter/assets/images/quiz_app.PNG)
 
 Right click and click inspect
 
