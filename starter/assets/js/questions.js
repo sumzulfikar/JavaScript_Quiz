@@ -26,7 +26,7 @@ var quizData=[
     var displayTime=document.querySelector("#time");
     var endScreen=document.getElementById("end-screen");
     var score=document.getElementById("final-score");
-    var submit=document.getElementById("submit");
+    
     
     var currentIndex=0;
     var finalScore=0;
@@ -108,13 +108,23 @@ function endQuiz(){
    scores();
 }
 //This is to store the score in the highscore page where initials and scores are saved
+var submit=document.getElementById("submit");
+var initialsInput=document.getElementById("initials");
 submit.addEventListener("click",scores);
 
-function scores(){
-  
-var checkScore=localStorage.getItem("score");
+function scores(){ 
+    
+    var initials=initialsInput.value.trim();
+    localStorage.setItem('initials', initials);
+    var checkScore=localStorage.getItem("score");
+    
+    var initials = localStorage.getItem('initials');
+    var checkScore = localStorage.getItem('score'); ;
+    var details="<li>"+initials+" "+checkScore+"</li>";
 
-highScore.textContent=("score"+checkScore);
-
+    highScore.textContent=details;
+   
+// 
+// 
 
 }
