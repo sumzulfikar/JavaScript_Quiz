@@ -23,7 +23,7 @@ https://sumzulfikar.github.io/JavaScript_Quiz/
 A screenshot of the application:
 ![A timeed quiz for javascript](./starter/assets/images/quiz_app.PNG)
 
-Right click and click inspect
+Right click and click inspect and applications to see stored initials and score
 
 
 ## Features
