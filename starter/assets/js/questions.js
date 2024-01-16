@@ -106,19 +106,25 @@ function endQuiz(){
     endScreen.setAttribute("class","show");
     panelQuiz.setAttribute("class","hide");
     score.textContent=finalScore;
+    console.log(finalScore)
     localStorage.setItem("score", finalScore);
    scores();
 }
 //This is to store the score in the highscore page where initials and scores are saved
-
+var highscorePage=document.getElementById("#highscoreBtn");
+// highscorePage.addEventListener("click",newFunction)
 submit.addEventListener("click",scores);
-var checkScore=localStorage.getItem("score");
+//var checkScore=localStorage.getItem("score");
 function scores(){ 
     var initials = initialsInput.value.trim();
+    console.log(initials)
     localStorage.setItem('initials', initials);
-    var checkScore = localStorage.getItem("score");
-    var details = "<li>" + initials + " " + checkScore + "</li>";
-    highScore.innerHTML = details;
+   var checkScore = localStorage.getItem("score");
 
+   var details=document.createElement("li");
+    details.textContent=(`details ${initials} ${checkScore}`);
+    
+    // highScore.innerHTML = `<li> ${initials} ${checkScore}</li>`;
+    highScore.appendChild(details);
 
 }
