@@ -33,6 +33,7 @@ var quizData=[
     
     var currentIndex=0;
     var finalScore=0;
+    var highscoresArray = [];
     
     //The Quiz starts when Start Button is clicked
 
@@ -110,21 +111,70 @@ function endQuiz(){
     localStorage.setItem("score", finalScore);
    scores();
 }
+
+//Adding eventlistener when the View High Score button is clicked and transfers to the highscore page
+
+
+var highscorePage=document.getElementById("highscoreBtn").addEventListener("click", function (event) {
+    event.preventDefault(); // Prevents the default behavior of the link
+    window.location.href = "./starter/assets/pages/highscores.html";
+});
+
+
+
 //This is to store the score in the highscore page where initials and scores are saved
-var highscorePage=document.getElementById("#highscoreBtn");
-// highscorePage.addEventListener("click",newFunction)
+var highscorePage=document.getElementById("highscoreBtn");
+
 submit.addEventListener("click",scores);
-//var checkScore=localStorage.getItem("score");
+
 function scores(){ 
     var initials = initialsInput.value.trim();
-    console.log(initials)
-    localStorage.setItem('initials', initials);
-   var checkScore = localStorage.getItem("score");
-
-   var details=document.createElement("li");
-    details.textContent=(`details ${initials} ${checkScore}`);
+    var checkScore = localStorage.getItem("score");
     
-    // highScore.innerHTML = `<li> ${initials} ${checkScore}</li>`;
-    highScore.appendChild(details);
+    //Storing the initial and score in an array
+var scoreDetails={
+    initials:initials,
+    score:checkScore
+};
+//pushing the object into the array
+highscoresArray=JSON.parse(localStorage.getItem("highscores"))||[];
+
+if(scoreDetails.initials.trim()!=="" && scoreDetails.score.trim()!==""){
+highscoresArray.push(scoreDetails);
+localStorage.setItem("highscores", JSON.stringify
+(highscoresArray));
+}
+
+displayScores();
+initialsInput.value=""; 
+
 
 }
+//function to display the score in the High scores page
+
+function displayScores(){
+    highScore.textContent="";
+    highscoresArray.forEach(function(scoreDetails){
+        var details=document.createElement("li");
+        
+        details.textContent=(`details ${scoreDetails.initials}: ${scoreDetails.checkScore}`);
+        highScore.appendChild(details);
+
+});
+}
+
+
+//Clear button in Highscores pages
+
+var clearBtn=document.getElementById("clear");
+clearBtn.addEventListener("click", function() {
+    // Clear the array and localStorage
+    highscoresArray = [];
+    localStorage.removeItem("highscores");
+
+    displayScores();
+});
+
+
+
+displayScores();
